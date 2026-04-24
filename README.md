@@ -329,24 +329,6 @@ The project has already been verified locally for:
 - live `/health` endpoint response
 - live `POST /bfhl` response
 
-## Deployment Guide (Render)
-
-This project uses a **Monolithic Architecture**. You only need to deploy **one** single Web Service, and it will handle both the Backend API and the Frontend UI.
-
-1. Create a new **Web Service** on Render.com and connect your GitHub repository.
-2. Set the configuration to:
-   - **Environment**: `Node`
-   - **Build Command**: `npm install && npm install --prefix client && npm run build`
-   - **Start Command**: `npm start`
-3. Add the following Environment Variables in the Render dashboard:
-   - `FULL_NAME`
-   - `DOB_DDMMYYYY`
-   - `COLLEGE_EMAIL`
-   - `COLLEGE_ROLL_NUMBER`
-4. Deploy!
-
-Your single deployed URL (e.g. `https://srm-bfhl-challenge.onrender.com`) will automatically serve the React UI when visited in a browser, and act as the API endpoint when POST requests are sent to `/bfhl`.
-
 ## Submission Checklist
 
 - Public GitHub repository created
