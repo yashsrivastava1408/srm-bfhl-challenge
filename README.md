@@ -4,10 +4,10 @@ Production-ready submission for the Round 1 SRM Full Stack Engineering Challenge
 
 This project delivers:
 
-- A `POST /bfhl` REST API that processes hierarchical node relationships exactly as required by the problem statement.
-- A polished single-page frontend for entering edge lists and visualizing the generated output.
-- A lightweight Node.js server that serves both the API and the built frontend.
-- A sample verification script to confirm the implementation matches the provided example.
+- A lightning-fast `POST /bfhl` REST API that natively parses hierarchical node relationships, resolves duplicates, and handles infinite cycles.
+- A highly polished **Asymmetric Futuristic Dashboard** frontend featuring custom CSS clip-paths, glitch animations, and interactive circuit-board tree visualizations.
+- A **Monolithic Node.js server** that serves both the API and the pre-built React frontend from a single web service.
+- A sample verification script to confirm the implementation perfectly matches the problem statement.
 
 ## Candidate Details
 
@@ -246,15 +246,19 @@ srm-bfhl-challenge/
 }
 ```
 
-## Frontend Highlights
+## Frontend Highlights: Futuristic Cyber Dashboard
 
-- Clean evaluator-facing UI
-- Sample input loader
-- Configurable API base URL
-- Structured summary cards
-- Hierarchy tree visualization
-- Clear API error handling
-- Responsive layout for desktop and mobile
+The UI was completely redesigned from standard web forms into a highly interactive, premium dashboard:
+
+- **Asymmetric Geometry**: Uses CSS `clip-path` to create sharp, futuristic hexagonal cuts on data cards and buttons.
+- **Glassmorphism & Depth**: Deep dark mode with translucent glass panels (`backdrop-filter`) and neon-glowing drop shadows.
+- **Micro-Animations**:
+  - A subtle RGB-split glitch animation on the main title.
+  - Staggered slide-up entry animations for data cards and metrics.
+  - Interactive hover states that light up the tree node connections like a circuit board.
+- **Animated Backgrounds**: A responsive `.cyber-grid` with slowly floating cyan and purple ambient light orbs.
+- **Collapsible Payload Data**: The raw JSON payload section defaults to a clean, collapsed view to save vertical space.
+- **Fully Responsive**: Adapts seamlessly from a split-pane desktop console to a stacked mobile view.
 
 ## Local Setup
 
@@ -294,14 +298,14 @@ PORT=3001
 npm run start
 ```
 
-### 5. Start the frontend in another terminal
+### 5. Start the Monolithic Server
 
 ```bash
-cd ~/Desktop/srm-bfhl-challenge/client
-npm run dev
+npm run start
 ```
 
-The Vite dev server proxies `/bfhl` and `/health` to `http://localhost:3001`.
+The Node backend will now start on `http://localhost:3001`. 
+Because it is a monolithic structure, you do not need to run a separate React server! Opening that URL in your browser will automatically serve the production-built React frontend, and hitting `http://localhost:3001/bfhl` will hit the API.
 
 ## Available Scripts
 
@@ -331,21 +335,23 @@ The project has already been verified locally for:
 - live `/health` endpoint response
 - live `POST /bfhl` response
 
-## Deployment Notes
+## Deployment Guide (Render)
 
-This project is deployment-ready on platforms that support a Node server, such as:
+This project uses a **Monolithic Architecture**. You only need to deploy **one** single Web Service, and it will handle both the Backend API and the Frontend UI.
 
-- Render
-- Railway
-- Any VPS or Node-compatible hosting provider
+1. Create a new **Web Service** on Render.com and connect your GitHub repository.
+2. Set the configuration to:
+   - **Environment**: `Node`
+   - **Build Command**: `npm install && npm install --prefix client && npm run build`
+   - **Start Command**: `npm start`
+3. Add the following Environment Variables in the Render dashboard:
+   - `FULL_NAME`
+   - `DOB_DDMMYYYY`
+   - `COLLEGE_EMAIL`
+   - `COLLEGE_ROLL_NUMBER`
+4. Deploy!
 
-Recommended production flow:
-
-1. Push the project to a public GitHub repository.
-2. Configure environment variables in the hosting provider.
-3. Run `npm run build` during deployment.
-4. Start the server with `npm run start`.
-5. Use the deployed base URL for evaluator access to `/bfhl`.
+Your single deployed URL (e.g. `https://srm-bfhl-challenge.onrender.com`) will automatically serve the React UI when visited in a browser, and act as the API endpoint when POST requests are sent to `/bfhl`.
 
 ## Submission Checklist
 
