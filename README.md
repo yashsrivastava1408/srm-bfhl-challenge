@@ -292,13 +292,7 @@ COLLEGE_ROLL_NUMBER=RA2311003010594
 PORT=3001
 ```
 
-### 4. Start the backend
-
-```bash
-npm run start
-```
-
-### 5. Start the Monolithic Server
+### 4. Start the Monolithic Server
 
 ```bash
 npm run start
